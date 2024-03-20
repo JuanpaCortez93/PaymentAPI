@@ -21,11 +21,15 @@ namespace PaymentAPI.DataAccess.Services
 
         public PaymentDetailsService(
             IUnitOfWork unitOfWork,
-            IMapper paymentDetailsMapper
+            IMapper paymentDetailsMapper,
+            IValidator<PaymentDetailsPostDTO> postValidator,
+            IValidator<PaymentDetailsPutDTO> putValidator
             )
         {
             _unitOfWork = unitOfWork;   
             _paymentDetailsMapper = paymentDetailsMapper;
+            _postValidator = postValidator;
+            _putValidator = putValidator;
         }
 
         public async Task<IEnumerable<PaymentDetailsGetDTO>> GetAllElements()
