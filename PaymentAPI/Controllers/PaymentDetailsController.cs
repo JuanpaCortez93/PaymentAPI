@@ -31,6 +31,13 @@ namespace PaymentAPI.Controllers
             return Ok(paymentDetailsDTO);
         }
 
+        [HttpGet("id/{id}")]
+        public async Task<ActionResult<IEnumerable<PaymentDetailsGetDTO>>> GetPaymentById(int? id)
+        {
+            var paymentDetailsDTO = await _paymentDetailsService.GetElementById(id);
+            return Ok(paymentDetailsDTO);
+        }
+
         [HttpPost("add")]
         public async Task<ActionResult<PaymentDetailsGetDTO>> AddPaymentDetails(PaymentDetailsPostDTO paymentDetailsPostDTO)
         {

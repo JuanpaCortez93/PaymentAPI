@@ -88,8 +88,14 @@ namespace PaymentAPI.DataAccess.Services
             return paymentDetailsDTO;
         }
 
+        public async Task<PaymentDetailsGetDTO> GetElementById(int? id)
+        {
+            var paymentDetails = await _unitOfWork.PaymentDetailRepository.GetElementById(id);
+            if (paymentDetails == null) return null;
 
+            var paymentDetailsDTO = _paymentDetailsMapper.Map<PaymentDetailsGetDTO>(paymentDetails);
+            return paymentDetailsDTO;
 
-
+        }
     }
 }
